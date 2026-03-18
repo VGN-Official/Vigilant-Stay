@@ -5,7 +5,7 @@ let timeLeft = 3;
 
 // 1. THE FOOLPROOF BUILDER
 const smsUrlBuilder = (number, body) => {
-    const cleanNumber = number.replace (/\s+/g, '');
+    const cleanNumber = number.replace(/\s+/g, '');
     const target = cleanNumber || "+2348000000000";
     // Using '?' for single recipients is 100% stable on Android & iOS
     return `sms:${target}?body=${encodeURIComponent(body)}`;
@@ -14,33 +14,33 @@ const smsUrlBuilder = (number, body) => {
 const showSmsButton = (body) => {
     const statusMsg = document.getElementById('statusMsg');
     
-    // Grab numbers from inputs
-    const c1 = document.getElementById('contact1')?.value || "";
-    const c2 = document.getElementById('contact2')?.value || "";
+    // Pull numbers directly from the specific keys you used
+    const c1 = localStorage.getItem('vgn_contact') || "";
+    const c2 = localStorage.getItem('vgn_contact2') || "";
 
     let buttonsHTML = `<div style="margin-top:15px;">`;
 
     if (c1) {
         buttonsHTML += `
-            <a href="${smsUrlBuilder(c1, body)}" class="sos-final-btn" style="background: #d32f2f; display:block; padding: 20px; color: white; border-radius: 12px; text-decoration: none; font-weight: bold; text-align: center; margin-bottom:12px; border: 2px solid #b71c1c;">
-               🚨 SEND PRIMARY ALERT
+            <a href="${smsUrlBuilder(c1, body)}" style="background: #C5A021; display:block; padding: 22px; color: white; border-radius: 15px; text-decoration: none; font-weight: bold; text-align: center; margin-bottom:15px; border-bottom: 5px solid #0D47A1; font-size: 1.1em;">
+               🚨 ALERT VIGILANT-STAY SECURITY
             </a>`;
     }
 
     if (c2) {
         buttonsHTML += `
-            <a href="${smsUrlBuilder(c2, body)}" class="sos-final-btn" style="background: #333; display:block; padding: 20px; color: white; border-radius: 12px; text-decoration: none; font-weight: bold; text-align: center; border: 2px solid #000;">
-               🛡️ SEND BACKUP ALERT
+            <a href="${smsUrlBuilder(c2, body)}" style="background: #455A64; display:block; padding: 20px; color: white; border-radius: 15px; text-decoration: none; font-weight: bold; text-align: center; border-bottom: 5px solid #263238;">
+               🛡️ ALERT HOTEL RECEPTION
             </a>`;
     }
 
     if (!c1 && !c2) {
-        buttonsHTML += `<p style="color:#ff5252; font-weight:bold;">⚠️ No contacts set in Settings!</p>`;
+        buttonsHTML += `<p style="color:#C5AO21; font-weight:bold; text-align:center;">⚠️ Please set contacts in Settings!</p>`;
     }
 
     buttonsHTML += `</div>`;
     statusMsg.innerHTML = buttonsHTML;
-    };
+};
 // 3. THE RESET LOGIC
 window.stopAll = () => {
     if (confirm("Do you want to stop siren and reset App? (Stop & Reset?)")) {
@@ -120,39 +120,51 @@ if(contact2Input) {
         clearInterval(countdown);
         sosButton.classList.remove('active');
         timerDisplay.innerText = "";
-        statusMsg.innerText = "Vigilant-Stay Ready";
+        statusMsg.innerText = "Vigilant-STAY Ready";
     };
 
    const finishSOS = () => {
     isSent = true;
     const sosButton = document.getElementById('sos-btn');
+    const statusMsg = document.getElementById('statusMsg');
     if (sosButton) sosButton.classList.add('sent');
     
-    // Get Intelligence Data
-   const hotel = localStorage.getItem('vgn_blood') || "Not Set"; 
-    const room = localStorage.getItem('vgn_allergies') || "Guest";
+    // 1. PULL DATA FROM THE EXACT LOCALSTORAGE KEYS
+    // We match 'vgn_blood' and 'vgn_allergies' which your listeners save to
+    const hostel = localStorage.getItem('vgn_blood') || "NOT SET";
+    const studentId = localStorage.getItem('vgn_allergies') || "Student";
+
+    // 2. SHOW IMMEDIATE FEEDBACK
+    statusMsg.innerHTML = `<p style="color: #C5A021; font-weight: bold; text-align: center;">🛰️ Establishing GPS Lock...</p>`;
 
     navigator.geolocation.getCurrentPosition((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
+        // Corrected Map URL syntax
         const mapUrl = `https://www.google.com/maps?q=${lat},${lon}`;
 
-        // 2. NOW THE COMPUTER KNOWS WHAT 'room' AND 'hotel' ARE
-        const smsBody = `VIGN EMERGENCY ALERT!%0A` +
-                        `Location: ${mapUrl}%0A` +
-                        `Hotel: ${hotel}%0A` +
-                        `Room: ${room}`;
+        const smsBody = `🗝️ VIGILANT-STAY EMERGENCY!
+HOTEL/ROOM: ${hostel}
+GUEST ID: ${studentId}
+GPS: ${mapUrl}
+Status: Distress signal triggered by guest.`;
 
         showSmsButton(smsBody); 
         window.playSiren();
     }, (err) => {
-        // Same here for the "GPS Off" version
-        const smsBody = `VIGN EMERGENCY! (GPS Off)%0A` +
-                        `Hotel: ${hotel}%0A` +
-                        `Room: ${room}`;
+        // This is the part seen in your screenshot!
+        const smsBody = `🗝️ VIGILANT-STAY EMERGENCY! (GPS OFF)
+HOTEL/ROOM: ${hostel}
+GUEST ID: ${studentId}
+Status: Guest triggered distress signal.`;
+                    
         showSmsButton(smsBody);
         window.playSiren();
-    }, { enableHighAccuracy: true });
+    }, { 
+        enableHighAccuracy: true, 
+        timeout: 8000,
+        maximumAge: 0 
+    });
 };
     // Listeners
     sosButton.addEventListener('mousedown', startSOS);
