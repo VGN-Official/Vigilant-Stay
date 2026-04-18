@@ -22,15 +22,15 @@ const showSmsButton = (body) => {
 
     if (c1) {
         buttonsHTML += `
-            <a href="${smsUrlBuilder(c1, body)}" style="background: #C5A021; display:block; padding: 22px; color: white; border-radius: 15px; text-decoration: none; font-weight: bold; text-align: center; margin-bottom:15px; border-bottom: 5px solid #0D47A1; font-size: 1.1em;">
-               🚨 ALERT VIGILANT-STAY SECURITY
+            <a href="${smsUrlBuilder(c1, body)}" style="background: #1565C0; display:block; padding: 22px; color: white; border-radius: 15px; text-decoration: none; font-weight: bold; text-align: center; margin-bottom:15px; border-bottom: 5px solid #0D47A1; font-size: 1.1em;">
+               🚨 ALERT OPS COMMAND
             </a>`;
     }
 
     if (c2) {
         buttonsHTML += `
             <a href="${smsUrlBuilder(c2, body)}" style="background: #455A64; display:block; padding: 20px; color: white; border-radius: 15px; text-decoration: none; font-weight: bold; text-align: center; border-bottom: 5px solid #263238;">
-               🛡️ ALERT HOTEL RECEPTION
+             🛡️ ALERT NSCDC DESK
             </a>`;
     }
 
@@ -120,7 +120,7 @@ if(contact2Input) {
         clearInterval(countdown);
         sosButton.classList.remove('active');
         timerDisplay.innerText = "";
-        statusMsg.innerText = "Vigilant-STAY Ready";
+        statusMsg.innerText = "SENTINEL-DEFENDER Ready";
     };
 
    const finishSOS = () => {
@@ -132,7 +132,7 @@ if(contact2Input) {
     // 1. PULL DATA FROM THE EXACT LOCALSTORAGE KEYS
     // We match 'vgn_blood' and 'vgn_allergies' which your listeners save to
     const hostel = localStorage.getItem('vgn_blood') || "NOT SET";
-    const studentId = localStorage.getItem('vgn_allergies') || "Student";
+    const studentId = localStorage.getItem('vgn_allergies') || "AGENT";
 
     // 2. SHOW IMMEDIATE FEEDBACK
     statusMsg.innerHTML = `<p style="color: #C5A021; font-weight: bold; text-align: center;">🛰️ Establishing GPS Lock...</p>`;
@@ -143,20 +143,20 @@ if(contact2Input) {
         // Corrected Map URL syntax
         const mapUrl = `https://www.google.com/maps?q=${lat},${lon}`;
 
-        const smsBody = `🗝️ VIGILANT-STAY EMERGENCY!
-HOTEL/ROOM: ${hostel}
-GUEST ID: ${studentId}
+        const smsBody = `🚩 TOPFORD SENTINEL ALERT!
+SECTOR: ${hostel}
+AGENT ID: ${studentId}
 GPS: ${mapUrl}
-Status: Distress signal triggered by guest.`;
+Status: DISTRESS SIGNAL ACTIVATED.`;
 
         showSmsButton(smsBody); 
         window.playSiren();
     }, (err) => {
         // This is the part seen in your screenshot!
-        const smsBody = `🗝️ VIGILANT-STAY EMERGENCY! (GPS OFF)
-HOTEL/ROOM: ${hostel}
-GUEST ID: ${studentId}
-Status: Guest triggered distress signal.`;
+        const smsBody = `🚩 TOPFORD SENTINEL ALERT!
+SECTOR: ${hostel}
+AGENT ID: ${studentId}
+Status: URGENT - GPS Unavailable.`;
                     
         showSmsButton(smsBody);
         window.playSiren();

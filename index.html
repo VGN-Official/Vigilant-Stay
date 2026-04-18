@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vigilant-Stay | 5-STAR SAFETY</title>
+    <title>TOPFORD SENTINEL-DEFENDER</title>
     
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -54,31 +54,58 @@
         .sos-button.sent {
             background-color: green;
         }  
+
+        .sos-circle-trigger {
+            transition: transform 0.1s;
+            user-select: none;
+            outline: none;
+            border-radius: 50%;
+        }
+
+        /* Adds a "press" effect when the user holds the image */
+        .sos-circle-trigger:active {
+            transform: scale(0.95);
+            filter: brightness(0.9);
+        }
+
+        /* Keeps the orange/green status logic you had before */
+        .sos-circle-trigger.active {
+    filter: drop-shadow(0 0 15px orange);
+        }
+
+        .sos-circle-trigger.sent {
+            filter: drop-shadow(0 0 15px green);
+        }
+
     </style>
     </head>
 <body>
     <header style="text-align: center; padding: 20px;">
-        <h1 style="color: #1a237e;">Vigilant-Stay</Vigilant-Hotel></h1>
-        <p>5-STAR SAFETY </p>
+        <h1 style="color: #1a237e;">SENTINEL-DEFENDER</h1>
+        <p><img src="icon.png" style="display: block; margin: 0 auto; width: 50px;"></p> 
+        <p><i>In Strategic Collaboration with</i> <b>NSCDC</b></p>
+        <p><img src="nscdc_logo.png" style="display: block; margin: 0 auto; width: 50px;"></p> 
     </header>
 
     <main style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh;">
         <div id="timer" style="font-size: 2rem; font-weight: bold; margin-bottom: 10px;"></div>
         <div id="statusMsg" style="font-weight: bold; margin-bottom: 20px;">Ready</div>
         
+        <p>
+        <div id="sos-btn" class="sos-circle-trigger" style="cursor: pointer; -webkit-tap-highlight-color: transparent;">
+            <img src="tf_final_circle_sos.png" style="width: 250px; border-radius: 50%; pointer-events: none;">
+        </div>
+        </p>
         <button id="stop-btn" style="background: #444; color: #fff; border: none; padding: 10px; border-radius: 8px; margin-top: 20px;">
             STOP & RESET
         </button>
-
-        <button id="sos-btn" class="sos-button">SOS</button>
-
-         <div class="checkin-panel" style="margin-top: 20px; text-align: center; background: #e3f2fd; padding: 15px; border-radius: 10px; border: 1px solid #1565C0;">
-         <h3 style="font-size: 1rem; color: #1565C0;">Guest Check-In</h3>
+        <div class="checkin-panel" style="margin-top: 20px; text-align: center; background: #e3f2fd; padding: 15px; border-radius: 10px; border: 1px solid #1565C0;">
+         <h3 style="font-size: 1rem; color: #1565C0;">Operational Check-In</h3>
     
-        <input type="text" id="bloodGroup" placeholder="Enter Hotel & Room Number" 
+        <input type="text" id="bloodGroup" placeholder="Sector (e.g. Sector B-4)" 
            style="display: block; margin: 5px auto; padding: 10px; width: 80%; border-radius: 5px; border: 1px solid #90caf9;">
     
-        <input type="text" id="allergies" placeholder="Guest No/Room" 
+        <input type="text" id="allergies" placeholder="Agent ID (e.g. TD-AGRO-7)" 
            style="display: block; margin: 5px auto; padding: 10px; width: 80%; border-radius: 5px; border: 1px solid #90caf9;">
            
         <p style="font-size: 0.7rem; color: #1565C0;">Data is used to identify you in a distress signal.</p>
@@ -87,8 +114,8 @@
         
         <div class="settings-panel" style="margin-top: 40px; text-align: center; background: #f5f5f5; padding: 15px; border-radius: 10px; border: 1px solid #ddd;">
             <h3 style="font-size: 1rem; color: #333;">Emergency Contacts</h3>
-            <input type="text" id="contact1" placeholder="Contact 1 (e.g. +234...)" value="+234XXXXXXXXXX" style="display: block; margin: 5px auto; padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
-            <input type="text" id="contact2" placeholder="Contact 2" style="display: block; margin: 5px auto; padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="text" id="contact1" placeholder="Primary Command # (e.g. +234...)" value="+234XXXXXXXXXX" style="display: block; margin: 5px auto; padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
+            <input type="text" id="contact2" placeholder="Secondary Command # (e.g. +234...)" style="display: block; margin: 5px auto; padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
             <p style="font-size: 0.7rem; color: #666;">Numbers are saved locally for privacy.</p>
         </div>
 
@@ -114,7 +141,7 @@
         <input type="hidden" name="accessKey" value="sf_994c7c62301ad637286a6c00"> 
         <input type="hidden" name="subject" value="VGN App Feedback">
 
-        <input type="text" name="name" placeholder="Your Name" required 
+        <input type="text" name="name" placeholder="Your Name Or Email" required 
                style="width: 90%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
         
         <textarea name="message" placeholder="Describe the issue or suggestion..." required 
@@ -127,9 +154,9 @@
 </div>
 
    <footer style="margin-top: 50px; padding: 20px; text-align: center; font-size: 0.75rem; color: #777; line-height: 1.4;">
-        <p><strong>Vigilant-Stay Privacy Commitment</strong></p>
+        <p><strong>SENTINEL-DEFENDER Privacy Commitment</strong></p>
         <p>Location data are stored <strong>locally</strong> on this device. VGN does not upload your health records to a central database unless an SOS is triggered.</p>
-        <p>© 2026 VigilantNG Security Suite. All Rights Reserved.</p>
+        <p>© 2026 VGN Security Suite. All Rights Reserved.</p>
         <p style="text-decoration: underline; cursor: pointer;" onclick="alert('Data Privacy: LocalStorage encryption active. Location: GPS-only. No 3rd party sharing.')">View Data Protocols</p>
     </footer>
 
