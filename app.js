@@ -30,7 +30,7 @@ const showSmsButton = (body) => {
     if (c2) {
         buttonsHTML += `
             <a href="${smsUrlBuilder(c2, body)}" style="background: #455A64; display:block; padding: 20px; color: white; border-radius: 15px; text-decoration: none; font-weight: bold; text-align: center; border-bottom: 5px solid #263238;">
-             🛡️ ALERT NSCDC DESK
+             🛡️ ALERT TOPFORD DESK
             </a>`;
     }
 
