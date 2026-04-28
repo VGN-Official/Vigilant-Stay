@@ -23,14 +23,14 @@ const showSmsButton = (body) => {
     if (c1) {
         buttonsHTML += `
             <a href="${smsUrlBuilder(c1, body)}" style="background: #00ADEF; display:block; padding: 22px; color: white; border-radius: 15px; text-decoration: none; font-weight: bold; text-align: center; margin-bottom:15px; border-bottom: 5px solid #00ADEF; font-size: 1.1em;">
-               🚨 SENTINEL COMMAND SIGNAL
+               🚨 VIGILNT-STAY SIGNAL
             </a>`;
     }
 
     if (c2) {
         buttonsHTML += `
             <a href="${smsUrlBuilder(c2, body)}" style="background: #455A64; display:block; padding: 20px; color: white; border-radius: 15px; text-decoration: none; font-weight: bold; text-align: center; border-bottom: 5px solid #263238;">
-                🛡️ Alert Field Safety 
+                🛡️ Alert Hotel Security 
             </a>`;
     }
 
@@ -171,9 +171,9 @@ if(contact2Input) {
         // Corrected Map URL syntax
         const mapUrl = `https://www.google.com/maps?q=${lat},${lon}`;
 
-        const smsBody = `🚩 SENTINEL-CARE ALERT!
-Duty Station: ${hostel}
-UN ID Number: ${studentId}
+        const smsBody = `🚩 VIGILANT-STAY ALERT!
+Customer ID: ${hostel}
+Room Number: ${studentId}
 GPS: ${mapUrl}
 Status: DISTRESS SIGNAL ACTIVATED.`;
 
@@ -181,9 +181,9 @@ Status: DISTRESS SIGNAL ACTIVATED.`;
         window.playSiren();
     }, (err) => {
         // This is the part seen in your screenshot!
-        const smsBody = `🚩 SENTINEL-CARE ALERT!
-Duty Station: ${hostel}
-UN ID Number: ${studentId}
+        const smsBody = `🚩 VIGILANT-STAY ALERT!
+Customer ID: ${hostel}
+Room Number: ${studentId}
 Status: URGENT - GPS Unavailable.`;
                     
         showSmsButton(smsBody);

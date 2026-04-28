@@ -1,4 +1,4 @@
-const CACHE_NAME = 'UNICEF Sentinel-Care-v1';
+const CACHE_NAME = 'Vigilant-Stay-v1';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

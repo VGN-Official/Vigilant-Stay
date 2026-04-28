@@ -1,6 +1,6 @@
 {
-  "name": "UNICEF Sentinel-Care:Emergency Support Locator",
-  "short_name": "Sentinel-Care",
+  "name": "Vigilant-Stay:Emergency Support Locator",
+  "short_name": "Vigilant-Stay",
   "description": "Professional emergency broadcast system for estate and personal security.",
   "start_url": "index.html",
   "display": "standalone",
